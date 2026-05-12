@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login - CodeLearn</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ملف الستايل المشترك -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Background Section */
+        .auth-page {
+            min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-page::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .auth-page::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            bottom: -80px;
+            left: -80px;
+        }
+
+        /* Login Container */
+        .auth-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .auth-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 36px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .auth-container h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        /* Input Group */
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-group label i {
+            color: #667eea;
+            margin-left: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: 0.3s;
+            background: #f9f9f9;
+        }
+
+        .input-group input:focus {
+            border-color: #667eea;
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Login Button */
+        .auth-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        /* Register Link */
+        .auth-link {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .auth-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        // التحقق من البيانات قبل الإرسال للسيرفر
+        function validateLogin() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === "" || password === "") {
+                alert("⚠️ Please fill in all fields!");
+                return false;
+            }
+
+            if (!email.includes("@")) {
+                alert("⚠️ Please enter a valid email!");
+                return false;
+            }
+
+            // لو كل شي صح، الفورم يرسل البيانات لـ login.php
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html" class="logo">Code<span>Learn</span></a>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+    </div>
+
+    <!-- Auth Page -->
+    <div class="auth-page">
+
+        <div class="auth-container">
+
+            <div class="auth-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+
+            <h1>Welcome Back!</h1>
+            <p class="auth-subtitle">Login to continue your learning journey</p>
+
+            <!-- ✨ التعديل هنا: action="login.php" + method="POST" + onsubmit للتحقق -->
+            <form action="login.php" method="POST" onsubmit="return validateLogin()">
+
+                <div class="input-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <!-- ✨ أضفت name="email" عشان PHP يستقبل البيانات -->
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-key"></i> Password</label>
+                    <!-- ✨ أضفت name="password" -->
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+
+            </form>
+
+            <div class="divider">OR</div>
+
+            <p class="auth-link">
+                Don't have an account? <a href="register.html">Create one now</a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 CodeLearn. All rights reserved.</p>
+        </div>
+    </div>
+
+</body>
+</html>

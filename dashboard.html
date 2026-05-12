@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - CodeLearn</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7fa;
+        }
+
+        .dashboard-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .dashboard-hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: -50px auto 40px;
+            padding: 0 20px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-card h3 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin: 5px 0;
+        }
+
+        .stat-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .courses-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .courses-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .course-card.python { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .course-card.java { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .course-card.htmlcss { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .course-card.javascript { background: linear-gradient(135deg, #f39c12, #e67e22); }
+
+        .course-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <div class="dashboard-hero">
+        <a href="logout.php" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+        <h1>🎉 Welcome to CodeLearn!</h1>
+        <p>You are successfully logged in. Start your learning journey!</p>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-container">
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <i class="fas fa-book"></i>
+                <h3>4</h3>
+                <p>Available Courses</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>50+</h3>
+                <p>Lessons</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>1000+</h3>
+                <p>Students</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <h3>4.9</h3>
+                <p>Average Rating</p>
+            </div>
+        </div>
+
+        <!-- Courses -->
+        <div class="courses-section">
+            <h2><i class="fas fa-laptop-code"></i> My Courses</h2>
+            <div class="courses-grid">
+                
+                <a href="python.html" class="course-card python" style="text-decoration:none;">
+                    <i class="fab fa-python" style="font-size:40px;"></i>
+                    <h3>Python</h3>
+                    <p>Learn Python from basics</p>
+                </a>
+
+                <a href="java.html" class="course-card java" style="text-decoration:none;">
+                    <i class="fab fa-java" style="font-size:40px;"></i>
+                    <h3>Java</h3>
+                    <p>Build powerful applications</p>
+                </a>
+
+                <a href="htmlcss.html" class="course-card htmlcss" style="text-decoration:none;">
+                    <i class="fab fa-html5" style="font-size:40px;"></i>
+                    <h3>HTML & CSS</h3>
+                    <p>Design beautiful websites</p>
+                </a>
+
+                <a href="javascript.html" class="course-card javascript" style="text-decoration:none;">
+                    <i class="fab fa-js" style="font-size:40px;"></i>
+                    <h3>JavaScript</h3>
+                    <p>Make websites interactive</p>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

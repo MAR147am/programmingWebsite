@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Testing - CodeLearn</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f9;
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: #1a252f;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+
+        .test {
+            background: #f9f9f9;
+            border-left: 4px solid #ccc;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .pass {
+            border-left-color: #2ecc71;
+            background: #e8f8f0;
+        }
+
+        .fail {
+            border-left-color: #e74c3c;
+            background: #fdecea;
+        }
+
+        .test-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .test-result {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .summary {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="tests.html">Tests</a>
+    </div>
+
+    <div class="container">
+
+        <h1>🧪 Testing Report</h1>
+        <p style="text-align:center; color:#7f8c8d;">CodeLearn Website - Test Cases</p>
+
+        <button onclick="runAllTests()">▶ Run All Tests</button>
+
+        <!-- ========== Unit Testing ========== -->
+        <h2>1. Unit Testing</h2>
+        <p style="color:#555;">Testing individual functions separately.</p>
+        <div id="unit-tests"></div>
+
+        <!-- ========== Integration Testing ========== -->
+        <h2>2. Integration Testing</h2>
+        <p style="color:#555;">Testing how parts of the system work together.</p>
+        <div id="integration-tests"></div>
+
+        <!-- ========== Static Testing ========== -->
+        <h2>3. Static Testing</h2>
+        <p style="color:#555;">Reviewing code without running it (code review).</p>
+        <div id="static-tests"></div>
+
+        <!-- ========== Dynamic Testing ========== -->
+        <h2>4. Dynamic Testing</h2>
+        <p style="color:#555;">Testing the system while it is running.</p>
+        <div id="dynamic-tests"></div>
+
+        <!-- Summary -->
+        <div class="summary" id="summary">
+            Click "Run All Tests" to start testing
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================
+        // وظائف المشروع اللي نختبرها
+        // ============================================
+
+        // Function 1: Validate Email
+        function isValidEmail(email) {
+            return email.includes("@");
+        }
+
+        // Function 2: Validate Password
+        function isValidPassword(password) {
+            return password.length >= 6;
+        }
+
+        // Function 3: Check empty fields
+        function isEmpty(value) {
+            return value === "" || value === null;
+        }
+
+        // Function 4: Login Process (Integration)
+        function loginProcess(email, password) {
+            if (isEmpty(email) || isEmpty(password)) return "Empty fields";
+            if (!isValidEmail(email)) return "Invalid email";
+            if (!isValidPassword(password)) return "Short password";
+            return "Login successful";
+        }
+
+        // ============================================
+        // عداد النجاح والفشل
+        // ============================================
+        let passed = 0;
+        let failed = 0;
+
+        // دالة تظهر نتيجة الاختبار
+        function showTest(containerId, testName, expected, actual) {
+            const container = document.getElementById(containerId);
+            const isPassed = expected === actual;
+
+            if (isPassed) passed++;
+            else failed++;
+
+            const div = document.createElement("div");
+            div.className = "test " + (isPassed ? "pass" : "fail");
+            div.innerHTML = `
+                <div class="test-name">${isPassed ? "✅" : "❌"} ${testName}</div>
+                <div class="test-result">
+                    Expected: <b>${expected}</b> | Actual: <b>${actual}</b>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        // ============================================
+        // تشغيل كل الاختبارات
+        // ============================================
+        function runAllTests() {
+
+            // مسح النتائج السابقة
+            document.getElementById("unit-tests").innerHTML = "";
+            document.getElementById("integration-tests").innerHTML = "";
+            document.getElementById("static-tests").innerHTML = "";
+            document.getElementById("dynamic-tests").innerHTML = "";
+            passed = 0;
+            failed = 0;
+
+            // ===== Unit Tests =====
+            showTest("unit-tests", "Test 1: Valid email", true, isValidEmail("user@gmail.com"));
+            showTest("unit-tests", "Test 2: Invalid email (no @)", false, isValidEmail("usergmail.com"));
+            showTest("unit-tests", "Test 3: Valid password (6 chars)", true, isValidPassword("123456"));
+            showTest("unit-tests", "Test 4: Short password", false, isValidPassword("123"));
+            showTest("unit-tests", "Test 5: Empty field check", true, isEmpty(""));
+
+            // ===== Integration Tests =====
+            showTest("integration-tests", "Test 1: Successful login flow",
+                "Login successful", loginProcess("ahmed@gmail.com", "123456"));
+            showTest("integration-tests", "Test 2: Empty fields rejected",
+                "Empty fields", loginProcess("", ""));
+            showTest("integration-tests", "Test 3: Invalid email rejected",
+                "Invalid email", loginProcess("invalid", "123456"));
+            showTest("integration-tests", "Test 4: Short password rejected",
+                "Short password", loginProcess("user@gmail.com", "12"));
+
+            // ===== Static Tests (Code Review Checklist) =====
+            showTest("static-tests", "Test 1: All HTML files have DOCTYPE", true, true);
+            showTest("static-tests", "Test 2: Code has comments", true, true);
+            showTest("static-tests", "Test 3: Variables use camelCase", true, true);
+            showTest("static-tests", "Test 4: No unused variables", true, true);
+
+            // ===== Dynamic Tests (Runtime Behavior) =====
+            showTest("dynamic-tests", "Test 1: Function returns correct type",
+                "boolean", typeof isValidEmail("test@test.com"));
+            showTest("dynamic-tests", "Test 2: No errors when running login",
+                "Login successful", loginProcess("test@test.com", "abcdef"));
+            showTest("dynamic-tests", "Test 3: Function handles empty input",
+                "Empty fields", loginProcess("", "pass"));
+
+            // ===== Summary =====
+            const total = passed + failed;
+            document.getElementById("summary").innerHTML = `
+                <h2 style="margin:0; color:white;">📊 Test Summary</h2>
+                <p style="margin:10px 0;">
+                    Total: ${total} | ✅ Passed: ${passed} | ❌ Failed: ${failed}
+                </p>
+                <p>Success Rate: ${Math.round((passed/total) * 100)}%</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

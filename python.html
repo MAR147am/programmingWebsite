@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Python Course - CodeLearn</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Hero */
+        .course-hero {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .course-hero::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            bottom: -80px;
+            left: -80px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .course-icon-large {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            color: #3498db;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .course-hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .course-hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .meta-item i {
+            font-size: 18px;
+        }
+
+        /* Container */
+        .course-container {
+            max-width: 1100px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.7s ease-out;
+        }
+
+        .main-content h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .main-content h2 i {
+            color: #3498db;
+        }
+
+        .main-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .topics-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topics-list li {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+        }
+
+        .topics-list li:hover {
+            background: #e8f4fd;
+            transform: translateX(5px);
+        }
+
+        .topics-list li i {
+            color: #3498db;
+            font-size: 18px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            animation: fadeInUp 0.9s ease-out;
+        }
+
+        .sidebar-card h3 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-card h3 i {
+            color: #3498db;
+        }
+
+        .instructor-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .instructor-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .instructor-info h4 {
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+
+        .instructor-info p {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+
+        .enroll-btn-large {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .enroll-btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.5);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #ecf0f1;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="index.html" class="logo">Code<span>Learn</span></a>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="register.html"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+    </div>
+
+    <!-- Course Hero -->
+    <div class="course-hero">
+        <div class="hero-content">
+            <div class="course-icon-large">
+                <i class="fab fa-python"></i>
+            </div>
+            <h1>Python Programming</h1>
+            <p>Master Python from basics to advanced level</p>
+
+            <div class="course-meta">
+                <div class="meta-item"><i class="fas fa-clock"></i> 8 Weeks</div>
+                <div class="meta-item"><i class="fas fa-signal"></i> All Levels</div>
+                <div class="meta-item"><i class="fas fa-star"></i> 4.9/5</div>
+                <div class="meta-item"><i class="fas fa-users"></i> 1200+ Students</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Container -->
+    <div class="course-container">
+
+        <div class="info-grid">
+
+            <!-- Main Content -->
+            <div class="main-content">
+
+                <h2><i class="fas fa-info-circle"></i> About the Course</h2>
+                <p>
+                    Python is one of the most popular programming languages in the world.
+                    It is used in Artificial Intelligence, Data Science, Web Development,
+                    and Automation. This course will take you from a complete beginner
+                    to an advanced Python developer.
+                </p>
+
+                <h2 style="margin-top: 30px;"><i class="fas fa-list-check"></i> What You Will Learn</h2>
+                <ul class="topics-list">
+                    <li><i class="fas fa-check-circle"></i> Introduction to Python</li>
+                    <li><i class="fas fa-check-circle"></i> Variables and Data Types</li>
+                    <li><i class="fas fa-check-circle"></i> Loops and Conditions</li>
+                    <li><i class="fas fa-check-circle"></i> Functions and Modules</li>
+                    <li><i class="fas fa-check-circle"></i> Object-Oriented Programming</li>
+                    <li><i class="fas fa-check-circle"></i> Real-world Projects</li>
+                </ul>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-clock"></i> Course Duration</h3>
+                    <p style="color:#555;">⏱️ 8 Weeks</p>
+                    <p style="color:#7f8c8d; font-size:13px;">2 hours per week</p>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3><i class="fas fa-chalkboard-teacher"></i> Instructor</h3>
+                    <div class="instructor-info">
+                        <div class="instructor-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h4>Dr. Ahmed Hassan</h4>
+                            <p>Senior Python Developer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <a href="register.html" class="enroll-btn-large">
+                        <i class="fas fa-rocket"></i> Enroll Now
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Courses
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 CodeLearn. All rights reserved.</p>
+        </div>
+    </div>
+
+</body>
+</html>
